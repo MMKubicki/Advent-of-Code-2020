@@ -6,3 +6,6 @@
 582 passwords valid
 
 ## Part 2 Solution:
+271 passwords invalid
+
+729 passwords valid
