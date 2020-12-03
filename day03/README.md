@@ -2,7 +2,7 @@
 
 ## Part 1 Solution:
 ```
-With (3,1) hit 232 tree(s)
+With (3, 1) slope: hit 232 tree(s)
 ```
 
 ## Part 2 Solution:
