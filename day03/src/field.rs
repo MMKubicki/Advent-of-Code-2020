@@ -18,11 +18,12 @@ impl Field {
     }
 
     pub fn get_field(&self, x: usize, y: usize) -> FieldState {
-        //horizontal
+        // vertical
         assert!(y < self.0.len());
         let line = &self.0[y];
 
-        //vertical
+        // horizontal
+        // endlessly repeating
         let read_x = x % line.len();
         line[read_x]
     }
@@ -31,6 +32,7 @@ impl Field {
         self.get_field(x, y) == FieldState::Tree
     }
 
+    /// The distance from top to bottom
     pub fn len(&self) -> usize {
         self.0.len()
     }

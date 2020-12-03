@@ -31,9 +31,12 @@ fn test_slope(field: &Field, slope: (usize, usize)) -> usize {
 }
 
 fn traverse_slope(field: &Field, delta_x: usize, delta_y: usize) -> usize {
+    // start position
     let mut pos = Point(0usize, 0usize);
+    // distance to bottom (last y position)
     let target = field.len() - 1;
 
+    // tree counter
     let mut counter = 0usize;
 
     while pos.1 < target {
