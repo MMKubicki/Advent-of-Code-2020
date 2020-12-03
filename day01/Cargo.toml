@@ -6,6 +6,6 @@ edition = "2018"
 license = "MIT OR Apache-2.0"
 
 [dependencies]
-clap = "3.0.0-beta.2"
+common = { path = "../common" }
 anyhow = "1.0"
 itertools = "0.9"

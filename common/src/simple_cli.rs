@@ -1,6 +1,5 @@
 use clap::Clap;
 
-/// Day 01 of Advent of Code 2020
 #[derive(Clap)]
 #[clap(
     version = "1.0",

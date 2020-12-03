@@ -1,10 +1,9 @@
-mod cli;
-
-use itertools::Itertools;
 use std::fs;
 
+use itertools::Itertools;
+
 fn main() -> anyhow::Result<()> {
-    let options = cli::Opts::get();
+    let options = common::simple_cli::Opts::get();
 
     let content = get_contents(fs::read_to_string(options.input)?);
 

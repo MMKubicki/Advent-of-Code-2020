@@ -1,9 +1,9 @@
+use std::convert::TryFrom;
 use std::str::FromStr;
 
-pub use crate::password::error::Location;
-pub use crate::password::error::RequirementAndPasswordParseError;
-pub use crate::password::error::RequirementParseError;
-use std::convert::TryFrom;
+pub use error::Location;
+pub use error::RequirementAndPasswordParseError;
+pub use error::RequirementParseError;
 
 /// Wrapper for password requirements
 #[derive(Default, Debug)]

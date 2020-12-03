@@ -1,12 +1,11 @@
-use crate::password::{Password, Requirement, RequirementAndPassword};
+mod password;
+
+use password::{Password, Requirement, RequirementAndPassword};
 use std::convert::TryFrom;
 use std::fs;
 
-mod cli;
-mod password;
-
 fn main() -> anyhow::Result<()> {
-    let options = cli::Opts::get();
+    let options = common::simple_cli::Opts::get();
 
     let input = fs::read_to_string(options.input)?;
 

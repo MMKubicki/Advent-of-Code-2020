@@ -64,13 +64,16 @@ dependencies = [
 [[package]]
 name = "common"
 version = "0.1.0"
+dependencies = [
+ "clap",
+]
 
 [[package]]
 name = "day01"
 version = "0.1.0"
 dependencies = [
  "anyhow",
- "clap",
+ "common",
  "itertools",
 ]
 
@@ -79,7 +82,17 @@ name = "day02"
 version = "0.1.0"
 dependencies = [
  "anyhow",
- "clap",
+ "common",
+ "thiserror",
+]
+
+[[package]]
+name = "day03"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "common",
+ "reduce",
  "thiserror",
 ]
 
@@ -191,6 +204,12 @@ checksum = "aa563d17ecb180e500da1cfd2b028310ac758de548efdd203e18f283af693f37"
 dependencies = [
  "proc-macro2",
 ]
+
+[[package]]
+name = "reduce"
+version = "0.1.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a4c8549eb79c1fc8c449cb18a2d9b7873a7cb1bf2fcbfe8a3ad8812320544341"
 
 [[package]]
 name = "strsim"
