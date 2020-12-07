@@ -9,6 +9,7 @@ https://adventofcode.com/2020
 - [Day 04](day04)
 - [Day 05](day05)
 - [Day 06](day06)
+- [Day 07](day07)
 
 ## Common
 [Common](common) contains code that multiple days share
