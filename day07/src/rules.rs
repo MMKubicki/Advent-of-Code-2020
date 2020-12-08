@@ -2,6 +2,9 @@ use std::collections::{HashMap, HashSet};
 use std::fmt;
 use std::iter::FromIterator;
 
+// Rules
+//##################
+
 #[derive(Debug, Default, Clone, Eq, PartialEq)]
 pub struct Rules {
     rules: HashMap<BagInfo, Vec<BagCount>>,
@@ -24,13 +27,10 @@ impl Rules {
 
             // go through all rules
             for (key, rule_content) in self.rules.iter() {
-                // see if rule wraps one of new_entries in other bag
+                // see if rule wraps one of search_targets in other bag
                 // if yes -> new parent found -> put in collection -> continue with next rule
-                'rule_compare: for entry in search_targets.iter() {
-                    if rule_content.iter().any(|c| c.can_contain(entry)) {
-                        found_this_loop.insert(key);
-                        break 'rule_compare;
-                    }
+                if rule_content.iter().any(|c| search_targets.contains(&c.bag)) {
+                    found_this_loop.insert(key);
                 }
             }
 
@@ -109,6 +109,11 @@ impl fmt::Display for Rules {
     }
 }
 
+//##################
+
+// Rule
+//##################
+
 #[derive(Debug, Default, Clone, Eq, PartialEq)]
 pub struct Rule {
     key: BagInfo,
@@ -149,16 +154,15 @@ impl<T: AsRef<str>> From<T> for Rule {
     }
 }
 
+//##################
+
+// BagCount
+//##################
+
 #[derive(Debug, Default, Hash, Clone, Eq, PartialEq)]
 pub struct BagCount {
     count: usize,
     bag: BagInfo,
-}
-
-impl BagCount {
-    pub fn can_contain(&self, other: &BagInfo) -> bool {
-        self.bag == *other
-    }
 }
 
 impl<T: AsRef<str>> From<T> for BagCount {
@@ -195,6 +199,11 @@ impl fmt::Display for BagCount {
     }
 }
 
+//##################
+
+// BagInfo
+//##################
+
 #[derive(Debug, Default, Hash, Clone, Eq, PartialEq)]
 pub struct BagInfo {
     adjective: String,
@@ -228,3 +237,5 @@ impl fmt::Display for BagInfo {
         write!(f, "[{} {} bag]", self.adjective, self.color)
     }
 }
+
+//##################
