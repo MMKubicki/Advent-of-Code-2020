@@ -3,7 +3,7 @@ mod boot_code;
 use std::borrow::Cow;
 use std::fs;
 
-use boot_code::{parse_instruction_list, Instruction, Machine, Sign, TermReason};
+use boot_code::{parse_instruction_list, Instruction, Machine, TermReason};
 
 fn main() -> anyhow::Result<()> {
     let options = common::simple_cli::Opts::get();
@@ -86,51 +86,51 @@ fn try_change(instructions: &[Cow<Instruction>], idx: usize) -> Option<usize> {
 // some parts from trying to solve part 2 with analysing the Instructions that lead up to a back jump
 // ##################
 
-fn fix_looped_instructions(instructions: &[Instruction]) -> Vec<Cow<Instruction>> {
-    let mut result = get_cow_instructions(instructions);
-
-    let mut _jump_back_positions = instructions
-        .iter()
-        .enumerate()
-        .filter(|(_, i)| matches!(i, Instruction::Jmp(Sign::Minus, _)))
-        .map(|(c, _)| c)
-        .rev()
-        .filter_map(|pos| check_replace_jump_back(instructions, pos))
-        .map(|val| println!("{}", val))
-        .collect::<()>();
-
-    //TODO: Modify result
-
-    result
-}
-
-fn check_replace_jump_back(instructions: &[Instruction], jump_pos: usize) -> Option<usize> {
-    let mut machine = Machine::new(jump_pos);
-
-    machine.run_instruction(instructions[jump_pos]);
-
-    let start_pos = machine.get_pc();
-
-    if !matches!(machine.run_till_term(instructions), TermReason::Loop(_)) {
-        return None;
-    }
-
-    for pc in start_pos..(jump_pos - 1) {
-        match instructions[pc] {
-            Instruction::Nop(Sign::Plus, value) => {
-                if pc + value > jump_pos {
-                    return Some(pc);
-                }
-            }
-            Instruction::Jmp(Sign::Plus, value) => {
-                if pc + value < jump_pos {
-                    return Some(pc);
-                }
-            }
-            // Ignore Nop/Jump with negative value for now
-            _ => {}
-        }
-    }
-
-    None
-}
+// fn fix_looped_instructions(instructions: &[Instruction]) -> Vec<Cow<Instruction>> {
+//     let mut result = get_cow_instructions(instructions);
+//
+//     let mut _jump_back_positions = instructions
+//         .iter()
+//         .enumerate()
+//         .filter(|(_, i)| matches!(i, Instruction::Jmp(Sign::Minus, _)))
+//         .map(|(c, _)| c)
+//         .rev()
+//         .filter_map(|pos| check_replace_jump_back(instructions, pos))
+//         .map(|val| println!("{}", val))
+//         .collect::<()>();
+//
+//     //TODO: Modify result
+//
+//     result
+// }
+//
+// fn check_replace_jump_back(instructions: &[Instruction], jump_pos: usize) -> Option<usize> {
+//     let mut machine = Machine::new(jump_pos);
+//
+//     machine.run_instruction(instructions[jump_pos]);
+//
+//     let start_pos = machine.get_pc();
+//
+//     if !matches!(machine.run_till_term(instructions), TermReason::Loop(_)) {
+//         return None;
+//     }
+//
+//     for pc in start_pos..(jump_pos - 1) {
+//         match instructions[pc] {
+//             Instruction::Nop(Sign::Plus, value) => {
+//                 if pc + value > jump_pos {
+//                     return Some(pc);
+//                 }
+//             }
+//             Instruction::Jmp(Sign::Plus, value) => {
+//                 if pc + value < jump_pos {
+//                     return Some(pc);
+//                 }
+//             }
+//             // Ignore Nop/Jump with negative value for now
+//             _ => {}
+//         }
+//     }
+//
+//     None
+// }

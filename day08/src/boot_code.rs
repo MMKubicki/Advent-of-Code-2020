@@ -120,17 +120,6 @@ pub struct Machine {
 }
 
 impl Machine {
-    pub fn new(pc: usize) -> Self {
-        Self {
-            pc,
-            ..Default::default()
-        }
-    }
-
-    pub fn get_pc(&self) -> usize {
-        self.pc
-    }
-
     pub fn run_instruction<T: AsRef<Instruction>>(&mut self, instruction: T) {
         let instruction = instruction.as_ref();
 
