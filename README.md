@@ -15,6 +15,7 @@ https://adventofcode.com/2020
 - [Day 10](day10)
 - [Day 11](day11)
 - [Day 12](day12)
+- [Day 13](day13)
 
 ## Common
 [Common](common) contains code that multiple days share

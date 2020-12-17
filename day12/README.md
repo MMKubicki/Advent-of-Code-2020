@@ -1,4 +1,4 @@
-# Advent of Code 2020 - Day 11
+# Advent of Code 2020 - Day 12
 
 ## Part 1 Solution:
 ```
